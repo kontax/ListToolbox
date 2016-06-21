@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--
+    Adding Objects:
+        1. Create a new Resource Dictionary
+        2. Add a Merged Dictionary of Colors.xaml to the new Resource Dictionary
+        3. Add the new Resource Dictionary to this file as a Merged Dictionary
+    
+    
+    Adding to a Project
+        1. Add the following to the App.xaml file under the main Application tag:        
+            <Application.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/WPFTheme.Windows.BIAppsTheme;component/BIAppsTheme.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Application.Resources>
+    -->
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Button.xaml" />
+        <ResourceDictionary Source="TabControl.xaml" />
+        <ResourceDictionary Source="TabPage.xaml" />
+        <ResourceDictionary Source="GroupBox.xaml" />
+        <ResourceDictionary Source="StatusBar.xaml" />
+        <ResourceDictionary Source="Separator.xaml" />
+        <ResourceDictionary Source="Label.xaml" />
+        <ResourceDictionary Source="TextBox.xaml" />
+        <ResourceDictionary Source="TextBlock.xaml" />
+        <ResourceDictionary Source="CheckBox.xaml" />
+        <ResourceDictionary Source="RadioButton.xaml" />
+        <ResourceDictionary Source="ListBox.xaml" />
+        <ResourceDictionary Source="ComboBox.xaml" />
+        <ResourceDictionary Source="ScrollBar.xaml" />
+        <ResourceDictionary Source="ScrollViewer.xaml" />
+        <ResourceDictionary Source="ToolTip.xaml" />
+        <ResourceDictionary Source="Window.xaml" />
+        <ResourceDictionary Source="Expander.xaml" />
+        <ResourceDictionary Source="DataGrid.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

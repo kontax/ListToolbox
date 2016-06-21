@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0F0FBE88-EE82-49ED-95A0-B30A375EA650}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BIApps.ListToolbox.Tests</RootNamespace>
+    <AssemblyName>BIApps.ListToolbox.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Model_Tests\HelperClasses\FakeListUploader.cs" />
+    <Compile Include="Model_Tests\HelperClasses\FakeUploadedList.cs" />
+    <Compile Include="Model_Tests\HelperClasses\UserTests.cs" />
+    <Compile Include="Model_Tests\Operators_Tests\ColumnSelectorTests.cs" />
+    <Compile Include="Model_Tests\Operators_Tests\ColumnValueSpliterTests.cs" />
+    <Compile Include="Model_Tests\Operators_Tests\DeduperTests.cs" />
+    <Compile Include="Model_Tests\Operators_Tests\MergerTests.cs" />
+    <Compile Include="Model_Tests\Operators_Tests\RowCountSplitterTests.cs" />
+    <Compile Include="Model_Tests\UploadedList_Tests\UploadedListGroupTests.cs" />
+    <Compile Include="Model_Tests\Uploaders_Tests\DataTableUploaderTests.cs" />
+    <Compile Include="Model_Tests\Uploaders_Tests\TextListUploaderTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="TestLists\case_sensitive\test1.csv" />
+    <None Include="TestLists\case_sensitive\test2.csv" />
+    <None Include="TestLists\case_sensitive\test3.csv" />
+    <None Include="TestLists\contactable\contactable.csv" />
+    <None Include="TestLists\contactable\contactable.xls" />
+    <None Include="TestLists\contactable\contactable.xlsx" />
+    <None Include="TestLists\contactable\contact_1000.csv" />
+    <None Include="TestLists\dedupe_test\large_bingo.csv" />
+    <None Include="TestLists\dedupe_test\large_games.csv" />
+    <None Include="TestLists\dedupe_test\large_live.csv" />
+    <None Include="TestLists\dedupe_test\large_sportsbook.csv" />
+    <None Include="TestLists\dedupe_test\test1.csv" />
+    <None Include="TestLists\dedupe_test\test123.csv" />
+    <None Include="TestLists\dedupe_test\test2.csv" />
+    <None Include="TestLists\dedupe_test\test3.csv" />
+    <None Include="TestLists\invalid_chars\quote_test.csv" />
+    <None Include="TestLists\large_cust_ids\test1.csv" />
+    <None Include="TestLists\large_cust_ids\test2.csv" />
+    <None Include="TestLists\large_cust_ids\test3.csv" />
+    <None Include="TestLists\merge_list\CI_test1.csv" />
+    <None Include="TestLists\merge_list\CI_test2.csv" />
+    <None Include="TestLists\merge_list\CI_test3.csv" />
+    <None Include="TestLists\merge_list\CI_test4.csv" />
+    <None Include="TestLists\merge_list\diffheaders1.csv" />
+    <None Include="TestLists\merge_list\diffheaders2.csv" />
+    <None Include="TestLists\merge_list\noheaders1.csv" />
+    <None Include="TestLists\merge_list\noheaders2.csv" />
+    <None Include="TestLists\merge_list\test1.csv" />
+    <None Include="TestLists\merge_list\test2.csv" />
+    <None Include="TestLists\merge_list\test3.csv" />
+    <None Include="TestLists\merge_list\test4.csv" />
+    <None Include="TestLists\split_list\test1.csv" />
+    <None Include="TestLists\split_list\test2.csv" />
+    <None Include="TestLists\split_list\test3.csv" />
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

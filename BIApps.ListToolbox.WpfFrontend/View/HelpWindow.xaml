@@ -1,0 +1,760 @@
+﻿<Window x:Class="BIApps.ListToolbox.WpfFrontend.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help"
+        Height="455"
+        Width="450"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource PPColorDarkGreen2}">
+
+    <Grid>
+
+        <!-- MAIN GRID DEFINITIONS -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+        <!-- END MAIN GRID DEFINITIONS -->
+
+        <!-- MAIN HEADER -->
+        <Image Grid.Row="0"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Source="Resources\Images\header.png"
+               Stretch="UniformToFill"
+               MouseLeftButtonDown="MoveWindow" />
+        <Label Grid.Row="0"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0,5,0,0"
+               Content="Usage Help"
+               FontSize="22"
+               FontFamily="Penumbra Sans Std Bold"
+               FontWeight="Bold"
+               Foreground="White"
+               MouseLeftButtonDown="MoveWindow" />
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Width="60"
+                    Height="20"
+                    Orientation="Horizontal">
+            <Button Content="&#x5f;"
+                    Width="30"
+                    Height="20"
+                    BorderThickness="0"
+                    Click="btnMinimizeApp_Click" />
+            <Button Content="&#x274C;"
+                    Width="30"
+                    Height="20"
+                    BorderThickness="0"
+                    Click="btnCloseApp_Click" />
+        </StackPanel>
+        <!-- END MAIN HEADER -->
+
+        <!-- MAIN BODY -->
+        <ScrollViewer Grid.Row="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Margin="10">
+            <StackPanel>
+                <Expander Header="Uploading"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                Uploading content is necessary in order to get lists into the application 
+                                and start working with them. Any text file (eg. csv/txt/tab) can be uploaded
+                                as long as it has a delimeter (eg. comma/tab), or Excel files (xls/xlsx). If
+                                uploading and excel file, only the first sheet is taken from the file.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the upload button in the bottom left of the main application.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Navigate to the folder containing the lists.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Highlight the list(s) you want to upload, and press the Open button.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Wait for the status bar to stop moving, and for the status window to
+                                        say that uploading is complete. The list names and the number of rows 
+                                        in each will be displayed in the Loaded List box on the left.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any list you've uploaded by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If you want to remove the lists that are currently loaded into the 
+                                        application, click on the Clear button next to the Upload button.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Uploading a list which has the same filename as one already loaded into 
+                                        the application will prevent all the lists from being uploaded.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Uploading files without Excel or Text data within them will fail, or
+                                        stop the other functions from working properly.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        The output folder will be fixed at the location of the last list that 
+                                        was loaded into the application, and cannot be changed manually other 
+                                        than uploading another list. This will be addressed in future versions.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="Splitting"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,5">
+                                Splitting lists is used to split a list into multiple smaller lists based on 
+                                a specified criteria, either by a distinct column or a number of rows. For 
+                                example, if you had a list of customers and their platform preference in a list 
+                                (eg. Mobile, Desktop, Both), then splitting the list by the platform preference 
+                                column would result in three outputted lists (one for each platform preference).
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                Alternatively you may need to limit a list to a specific number of rows (eg. due 
+                                to an upload limit). In order to do this you select Row Count, and choose to 
+                                either keep or remove headers from the output files. You then enter the maximum 
+                                number of rows you want for each output file, and the lists will split with no 
+                                more than that number.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Upload the list(s) as above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the SPLIT tab and choose the method you want the lists to be 
+                                        split by.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If splitting by a specific column, choose that column in the drop down 
+                                        list. Note: If you have more than one list, the dropdown will only 
+                                        display those columns that each list has in common. If they have no 
+                                        common columns you will need to remove those that don't match and split 
+                                        them separately.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If splitting by a specific number of rows, click on either the Row 
+                                        Count (H) or Row Count (NH) buttons and type in the number of rows that 
+                                        you want each list to be split into. The H and NH options define whether 
+                                        the output lists keep or discard the header row in the original list.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the Split Lists button in the bottom right hand corner, and 
+                                        wait for the status bar to stop moving. The files should be outputted 
+                                        into the selected folder with the prefix [out] and, assuming split by 
+                                        column, the value of the column selected.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any outputted list by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header. At this stage however it's pointless to edit cells, as
+                                        the lists will have been saved already.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        An invalid value within the column to split by may result in the file 
+                                        failing to save properly. If this is the case, please give an example 
+                                        in the suggestion box below.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="Merging"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                Merging lists simply takes a number of lists with (ideally) the same columns 
+                                and merges them all into one list. Any columns that do not match will still be 
+                                included in the output however.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Upload the lists as described above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the MERGE tab.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the Merge Lists button in the bottom right hand corner, and 
+                                        wait for the status bar to stop moving. The output list name and row 
+                                        count will be displayed in the Outputted Lists box on the right.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        The merged file should be outputted into the selected folder named 
+                                        as [out] - Merged List.csv.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any outputted list by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header. At this stage however it's pointless to edit cells, as
+                                        the lists will have been saved already.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Inputted columns not having headers will not merge properly, as the 
+                                        header will be taken as the first row in the list.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="DeDuping"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                Deduping lists is used to remove rows from one list which match rows in another 
+                                number of lists in order of priority. For example, if you have a list of 
+                                customers you want to contact and you need to remove those that you've already 
+                                contacted in a previous campaign(s), you dedupe the first list from the second.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Upload the lists as described above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        IMPORTANT! You must reorder the lists you've uploaded into their order 
+                                        of priority by holding your mouse over them and dragging them above or 
+                                        below other loaded lists. The highest priority list (the one that does 
+                                        not get anything removed from it) should be at the top, with the least 
+                                        priority list at the bottom.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the DEDUPE tab.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select the column you wish to dedupe by (eg. cust_id or email address).
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select whether you want the check to be case sensitive (eg. for usernames)
+                                        or case insensitive (eg. for email addresses).
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the Dedupe Lists button in the bottom right hand corner, and 
+                                        wait for the status bar to stop moving. The output list names and row 
+                                        counts will be displayed in the Outputted Lists box on the right.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Each deduped file will be saved as the original name prefixed with [out].
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any outputted list by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header. At this stage however it's pointless to edit cells, as
+                                        the lists will have been saved already.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        When deduping by a column which contains a number (eg. Cust ID), you must 
+                                        keep the Case Sensitive button checked, otherwise the application will 
+                                        not dedupe the lists properly.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        The dedupe function does not remove duplicates from within a single list, 
+                                        even if multiple lists have been selected (this is by design). If you 
+                                        want to remove duplicates from within a single list, use the Remove 
+                                        Duplicates function within Excel.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If a list gets deduped so that no rows are left from the original, the 
+                                        whole function will stop. This will be fixed in future versions of the 
+                                        application.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="Checking For Contact Status"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                This function checks a list(s) of customers to see if they are able to be 
+                                contacted based on specific criteria selected by the user. For example, if you 
+                                have list of customers you want to email, but the list is a few days old, then 
+                                you use this function to ensure the customers still have the flags set to be 
+                                allowed to be contacted.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Upload the list(s) as described above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the CONTACT tab.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select the business channel you want to check the customers against. You 
+                                        will only have the Channels that you have permissions to view. The eGaming
+                                        schema covers customers over the whole of eGaming, and the PP.com schema 
+                                        covers all of Paddy Power.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select the column from the lists you have uploaded that identifies the 
+                                        customer that you want to check by eg. the Cust ID or Username.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Choose the Join column - this is the column in the database that matches 
+                                        the column you've uploaded in the list. For example, the uploaded list 
+                                        may have a cust_id column within it. This matches up to the ppo_cust_id 
+                                        column in the database, so ppo_cust_id should be selected as the Join 
+                                        column.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select the contact method(s) you want to check the customers against, and 
+                                        if multiple selections are made, whether they are inclusive (AND) or 
+                                        exclusive (OR). For example, if you want to email customers AND send them 
+                                        and SMS, you check the Email, SMS checkboxes and the AND radio button. If 
+                                        you want to contact them by one OR the other, you check Email, SMS and 
+                                        the OR radio button.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Choose whether you want to Remove or Flag the list of customers. Remove 
+                                        takes out the customers who are non-contactble from the output list, 
+                                        whereas Flag just adds a column to the end of the output list outlining 
+                                        whether a customer has met the criteria to be contacted (Y) or not (N).
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the Contact Chk button in the bottom right hand corner, and 
+                                        wait for the status bar to stop moving. The output list names and row 
+                                        counts will be displayed in the Outputted Lists box on the right.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Each outputted file will be saved as the original name prefixed 
+                                        with [out].
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any outputted list by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header. At this stage however it's pointless to edit cells, as
+                                        the lists will have been saved already.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        When deduping by a column which contains a number (eg. Cust ID), you must 
+                                        keep the Case Sensitive button checked, otherwise the application will 
+                                        not dedupe the lists properly.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If you try and join two columns that have types that do not match, such 
+                                        as text and numeric fields (eg. username and cust_id), the function will 
+                                        fail.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If none of the customers are contactable and the list has no rows, no 
+                                        output list will be generated.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        If you do not have access to the database, the function will not work 
+                                        at all.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="Column Selection"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                The column selection functionality looks at all the lists uploaded into the 
+                                application, and outputs only those columns selected by the user, one output 
+                                for each uploaded list.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Upload the lists as described above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the COLUMN tab.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Select the columns needed in the output lists in the box displaying
+                                        them, multiple columns can be selected. Only those columns in common 
+                                        with each list will be displayed.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Click on the Output Columns button in the bottom right hand corner, and 
+                                        wait for the status bar to stop moving. The output list name and row 
+                                        count will be displayed in the Outputted Lists box on the right.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        Each outputted file will be saved as the original name prefixed 
+                                        with [out].
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        You can preview any outputted list by double clicking on them. It's
+                                        also possible to edit individual cells, or sort by columns by clicking on 
+                                        a column header. At this stage however it's pointless to edit cells, as
+                                        the lists will have been saved already.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Box"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Expander Header="Explorer Context Menu"
+                          Margin="2">
+                    <FlowDocumentScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <FlowDocument FontFamily="Calibri"
+                                      FontSize="12">
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Description ::</Bold>
+                            </Paragraph>
+                            <Paragraph Margin="0,2,0,20">
+                                The Explorer Context Menu adds limited functionality of the application to the 
+                                right click menu in Windows Explorer. This means that you will not have to open 
+                                the application and upload the lists manually, instead you just need to right 
+                                click on them and choose the associated function from within Windows Explorer. 
+                                The functionality has some limitations which are described in the Usage section 
+                                below, so please take note of them first.
+                            </Paragraph>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Usage ::</Bold>
+                            </Paragraph>
+                            <List MarkerOffset="10"
+                                  MarkerStyle="Decimal"
+                                  Margin="0,2,0,20">
+                                <ListItem>
+                                    <Paragraph>
+                                        Go to the folder location that contains the list(s) you wish to upload, 
+                                        select one or multiple lists and then right click.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        A BI Apps context menu should be visible in the right click menu. Place 
+                                        the mouse over this and the selections available to you should be shown. 
+                                        Select the function you want to perform from this menu.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Upload:</Bold> Uploading lists will simply load all the lists 
+                                        selected into the application, assuming they are of the right format. If 
+                                        a file is selected that's not supported, you will need to deselect this 
+                                        file by holding down control and left clicking it before uploading.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Split By Column:</Bold> This will split columns based on a column 
+                                        within the file selected. If you are selecting multiple lists, only the 
+                                        columns that are common to all will be displayed here. The lists will 
+                                        then be split as desribed in the Split section above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Split By RowCount:</Bold> This will simply upload the lists and 
+                                        select the correct tab within the app, you will still need to input the 
+                                        rowcount you need to split by and manually press the split button within 
+                                        the application.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Merge:</Bold> This will upload and merge the lists in the same way 
+                                        as described in the Merge section above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>DeDupe:</Bold> You will need to select a column to dedupe by in the 
+                                        right click menu. If you are selecting multiple files, they will need to 
+                                        have a column in common to split by, otherwise no columns will be shown. 
+                                        The lists will then be uploaded and deduped as described in the DeDupe 
+                                        section above.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Contact Remove:</Bold> This will remove customers who do not meet 
+                                        the contactable criteria from the uploaded lists. You will need to select 
+                                        the contact method to check against, and ensure that the list contains 
+                                        one of the necessary customer identifiers (eg. Username/Cust ID). If it 
+                                        does not then the contact checking will fail. Only one method of 
+                                        contactibility can be check against at any one time.
+                                    </Paragraph>
+                                </ListItem>
+                                <ListItem>
+                                    <Paragraph>
+                                        <Bold>Contact Flag:</Bold> As above, except all customers are kept in the 
+                                        output list with a flag displaying whether they are contactable or not.
+                                    </Paragraph>
+                                </ListItem>
+                            </List>
+                            <Paragraph FontSize="15"
+                                       Margin="0,4,0,5">
+                                <Bold>:: Errors ::</Bold>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </Expander>
+                <Grid HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Margin="5">Suggestions/Comments:</TextBlock>
+                    <TextBox Grid.Row="1"
+                             Height="100"
+                             Margin="10,5"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch" />
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft">
+                        <Button Content="Submit"
+                                HorizontalAlignment="Right"
+                                Height="30"
+                                Width="100"
+                                Margin="10"
+                                IsEnabled="{Binding ElementName=tbxEmailContent,Path=Text.Length}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <!-- END MAIN BODY -->
+    </Grid>
+</Window>
+

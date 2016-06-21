@@ -1,0 +1,4 @@
+cust_id,username,"test,column",stake
+2,fine,also_fine,3.3
+43,"not,fine",fine,543.1
+3,"fine","not,fine",342

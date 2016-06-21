@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- TOOLTIP STYLE -->
+    <Style TargetType="{x:Type ToolTip}">
+        <Setter Property="Background"
+                Value="{StaticResource PPColorDarkGreen2}" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource PPColorLightGreen}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+    </Style>
+    
+</ResourceDictionary>

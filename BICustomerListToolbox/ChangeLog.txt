@@ -1,0 +1,11 @@
+﻿v1.1.0	Adding a double click list preview to the files uploaded and outputted.
+v1.1.0	Args methods cleanup
+v1.1.0	Fixing build platform issues
+v1.1.0	Convert all imported values to string (makes conversion easier)
+v1.1.0	Enabling resize, fixing feedback window, removing space from CommonDelim
+v1.1.1	Fixing issue where uppercase column names would cause issues with contact checking
+v1.1.2	Adding column selection output functionality
+v1.1.3	Updating help file for columns select functionality
+v1.1.4	Putting fix in for files with multiple periods, v 1.1.4
+v1.1.4	Error messages for uploading files + contact checking
+v1.1.4	Fixing DBCommon so it pulls connection strings from a config file

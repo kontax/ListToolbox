@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?if $(var.Platform) = x64 ?>
+<?define bitness = "(64 bit)" ?>
+<?define Win64 = "yes" ?>
+<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+<?else ?>
+<?define bitness = "(32 bit)" ?>
+<?define Win64 = "no" ?>
+<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+<?endif ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="BI List Toolbox $(var.bitness)"
+           Language="1033"
+           Version="3.0.0.0"
+           Manufacturer="BI Applications"
+           UpgradeCode="97a653a5-1bed-481b-a6d5-36b16486bee3">
+    <Package Id="*"
+             InstallerVersion="200"
+             Compressed="yes"
+             InstallPrivileges="elevated"
+             InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature"
+             Title="BIListToolbox_WiX_Installer"
+             Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <Property Id="MSIUSEREALADMINDETECTION"
+              Value="1" />
+
+    <InstallExecuteSequence>
+      <Custom Action="InstallShell"
+              After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="UninstallShell"
+              Before="RemoveFiles">(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+
+  <!-- DIRECTORY SETUP -->
+  <Fragment>
+    <!-- INSTALL DIRECTORY -->
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLFOLDER"
+                   Name="BI List Toolbox" />
+      </Directory>
+      <!-- START MENU DIRECTORY -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder"
+                   Name="BI List Toolbox" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut"
+                 Guid="{D360EF11-13F5-45E3-A189-5B0ABF59E1DD}"
+                 Win64="$(var.Win64)">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="BI List Toolbox"
+                  Description="A toolbox used to work with lists of customers, specifically Splitting, Merging, Deduping and checking the Contact Status of customers"
+                  Target="[#BIApps.ListToolbox.WpfFrontend.exe]"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder"
+                      On="uninstall" />
+        <RegistryValue Root="HKCU"
+                       Key="Software\Microsoft\BIListToolbox"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents"
+                    Directory="INSTALLFOLDER">
+      <Component Guid="{AEB5B83B-3A2C-45BD-9F99-8FA95DB10239}"
+                 Win64="$(var.Win64)">
+        <File Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetPath)"
+              KeyPath="yes" />
+      </Component>
+      <Component Guid="{E7DFA476-8514-4870-ADDE-29198B69A567}"
+                 Win64="$(var.Win64)">
+        <File Source="$(var.BIApps.ListToolbox.Model.TargetPath)"
+              KeyPath="yes" />
+      </Component>
+      <Component Guid="{D317881D-3349-467F-A6D5-984AEE4C5FBD}"
+                 Win64="$(var.Win64)">
+        <File Id="ContextMenuDll"
+              Source="$(var.BIContextMenu.TargetPath)"
+              KeyPath="yes" />
+      </Component>
+      <ComponentRef Id="ApplicationShortcut" />
+      
+      <Component>
+        <File Id="DialogService"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)BIApps.DialogService.dll" />
+      </Component>
+      <Component>
+        <File Id="WPFTheme"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)BIApps.WpfTheme.dll" />
+      </Component>
+
+      <Component>
+        <File Id="MvvmLight"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)GalaSoft.MvvmLight.dll"/>
+      </Component>
+      <Component>
+        <File Id="MvvmLightExtras"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)GalaSoft.MvvmLight.Extras.dll" />
+      </Component>
+      <Component>
+        <File Id="MvvmLightPlatform"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)GalaSoft.MvvmLight.Platform.dll" />
+      </Component>
+
+      <Component>
+        <File Id="Ninject"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)Ninject.dll" />
+      </Component>
+      <Component>
+        <File Id="ServiceLocator"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)Microsoft.Practices.ServiceLocation.dll" />
+      </Component>
+      <Component>
+        <File Id="Interactivity"
+              Source="$(var.BIApps.ListToolbox.WpfFrontend.TargetDir)System.Windows.Interactivity.dll" />
+      </Component>
+
+      <Component>
+        <File Id="SharpShellDll"
+              Source="$(var.BIApps.ListToolbox.Model.TargetDir)Resources\SharpShell.dll"/>
+      </Component>
+      <Component>
+        <File Id="SrmExe"
+              Source="$(var.BIApps.ListToolbox.Model.TargetDir)Resources\ServerRegistrationManager.exe" />
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <CustomAction Id="InstallShell"
+                  FileKey="SrmExe"
+                  ExeCommand='install "[INSTALLFOLDER]\ContextMenu.dll" -codebase'
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
+    <CustomAction Id="UninstallShell"
+                  FileKey="SrmExe"
+                  ExeCommand='uninstall "[INSTALLFOLDER]\ContextMenu.dll"'
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
+  </Fragment>
+</Wix>
